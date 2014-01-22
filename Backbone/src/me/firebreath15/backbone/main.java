@@ -103,27 +103,35 @@ public class main extends JavaPlugin{
 								}
 						}
 		/*Leave*/		if(args[0].equalsIgnoreCase("leave")){
-							if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName()) || Startgame.map.containsKey(p.getName())){
-								//if the player is in an arena, or if they are waiting, lets remove them.
-								if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName())){
-									cc.removeAndTeleport(p);
-									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GOLD+"Thanks for playing!");
-									Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GOLD+p.getName()+" left the game.");
-								}
-								
-								if(Startgame.map.containsKey(p.getName())){
-									Startgame.map.remove(p.getName());
-									cc.removeAndTeleport(p);
+							if(p.hasPermission("backbone.leave")){
+								if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName()) || Startgame.map.containsKey(p.getName())){
+									//if the player is in an arena, or if they are waiting, lets remove them.
+									if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName())){
+										cc.removeAndTeleport(p);
+										p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GOLD+"Thanks for playing!");
+										Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GOLD+p.getName()+" left the game.");
+									}
+									
+									if(Startgame.map.containsKey(p.getName())){
+										Startgame.map.remove(p.getName());
+										cc.removeAndTeleport(p);
+									}
+								}else{
+									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You aren't playing!");
 								}
 							}else{
-								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You aren't playing!");
+								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have permission!");
 							}
 						}
 		/*Store*/		if(args[0].equalsIgnoreCase("store")){
-							if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName())){
-								p.openInventory(Store.store);
+							if(p.hasPermission("backbone.store")){
+								if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName())){
+									p.openInventory(Store.store);
+								}else{
+									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You have to be playing in order to shop!");
+								}
 							}else{
-								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You have to be playing in order to shop!");
+								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have permission!");
 							}
 						}
 					}else{
@@ -134,47 +142,51 @@ public class main extends JavaPlugin{
 				if(args.length==2){
 					if(args[0].equalsIgnoreCase("join")||args[0].equalsIgnoreCase("bspawn")||args[0].equalsIgnoreCase("rspawn")||args[0].equalsIgnoreCase("setreload")){
 		/*Join*/		if(args[0].equalsIgnoreCase("join")){
-							String a = args[1];
-							
-							if(!(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName()))){
-								if(a.equalsIgnoreCase("1") || a.equalsIgnoreCase("2") || a.equalsIgnoreCase("3") || a.equalsIgnoreCase("4") || a.equalsIgnoreCase("5")){
-									if(!(this.getConfig().getInt("queue"+a)==-1)){
-										if(this.getConfig().contains("lobby.x") && this.getConfig().contains("spawn.x")){
-											double x = this.getConfig().getDouble("lobby.x");
-								            double y = this.getConfig().getDouble("lobby.y");
-								            double z = this.getConfig().getDouble("lobby.z");
-								            String wn = this.getConfig().getString("lobby.world");
-								            World w = this.getServer().getWorld(wn);
-								            Location l = new Location(w, x, y, z);
-								            p.teleport(l);
-											
-											int que = this.getConfig().getInt("queue"+a);
-											this.getConfig().set("queue"+a, que+1);
-											this.saveConfig();
-											
-											ISCOREAPI api = new ISCOREAPI();
-											api.createObjective("Arena_"+a, "Backbone");
-											api.createTeam("Player");
-											api.setScore(Bukkit.getOfflinePlayer(ChatColor.RED+"Red"), 0);
-											api.setScore(Bukkit.getOfflinePlayer(ChatColor.BLUE+"Blue"), 0);
-											api.addPlayerToTeam("Player", p);
-											api.refreshPlayerScoreboard(p);
-											
-											Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+p.getName()+ChatColor.GOLD+" joined arena "+a+"!");
-											int q = this.getConfig().getInt("queue"+a);
-											@SuppressWarnings("unused")
-											BukkitTask pre = new Pregame(this, a, p, q).runTaskLater(this, 20);
+							if(p.hasPermission("backbone.join")){
+								String a = args[1];
+								
+								if(!(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName()))){
+									if(a.equalsIgnoreCase("1") || a.equalsIgnoreCase("2") || a.equalsIgnoreCase("3") || a.equalsIgnoreCase("4") || a.equalsIgnoreCase("5")){
+										if(!(this.getConfig().getInt("queue"+a)==-1)){
+											if(this.getConfig().contains("lobby.x") && this.getConfig().contains("spawn.x")){
+												double x = this.getConfig().getDouble("lobby.x");
+									            double y = this.getConfig().getDouble("lobby.y");
+									            double z = this.getConfig().getDouble("lobby.z");
+									            String wn = this.getConfig().getString("lobby.world");
+									            World w = this.getServer().getWorld(wn);
+									            Location l = new Location(w, x, y, z);
+									            p.teleport(l);
+												
+												int que = this.getConfig().getInt("queue"+a);
+												this.getConfig().set("queue"+a, que+1);
+												this.saveConfig();
+												
+												ISCOREAPI api = new ISCOREAPI();
+												api.createObjective("Arena_"+a, "Backbone");
+												api.createTeam("Player");
+												api.setScore(Bukkit.getOfflinePlayer(ChatColor.RED+"Red"), 0);
+												api.setScore(Bukkit.getOfflinePlayer(ChatColor.BLUE+"Blue"), 0);
+												api.addPlayerToTeam("Player", p);
+												api.refreshPlayerScoreboard(p);
+												
+												Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+p.getName()+ChatColor.GOLD+" joined arena "+a+"!");
+												int q = this.getConfig().getInt("queue"+a);
+												@SuppressWarnings("unused")
+												BukkitTask pre = new Pregame(this, a, p, q).runTaskLater(this, 20);
+											}else{
+												p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is not completely setup!");
+											}
 										}else{
-											p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is not completely setup!");
+											p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is still running!");
 										}
 									}else{
-										p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is still running!");
+										p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You must specify which arena!");
 									}
 								}else{
-									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You must specify which arena!");
+									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You are already in a game!");
 								}
 							}else{
-								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You are already in a game!");
+								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have permission!");
 							}
 						}
 		/*Bspawn*/		if(args[0].equalsIgnoreCase("bspawn")){
