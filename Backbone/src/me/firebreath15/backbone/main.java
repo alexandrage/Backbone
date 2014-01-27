@@ -113,6 +113,14 @@ public class main extends JavaPlugin{
 									}
 									
 									if(Startgame.map.containsKey(p.getName())){
+										String a = Startgame.map.get(p.getName());
+										
+										if(this.getConfig().getInt("queue"+a) > 0){
+									    	  int q = this.getConfig().getInt("queue"+a);
+									    	  this.getConfig().set("queue"+a, q-1);
+									    	  this.saveConfig();
+									      }
+										
 										Startgame.map.remove(p.getName());
 										cc.removeAndTeleport(p);
 									}

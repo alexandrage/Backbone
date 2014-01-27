@@ -21,6 +21,8 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 public class PvpEngine implements Listener{
 	
@@ -321,8 +323,18 @@ public class PvpEngine implements Listener{
 								}
 							}
 						}else{
-							e.setCancelled(true);
-							d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "Use your Diamond Sword!");
+							//player isn't using sword. is he using his nausea stick?
+							if(d.getItemInHand().getType()==Material.GOLD_HOE){
+								e.setCancelled(true);
+								int amt = d.getItemInHand().getAmount();
+								d.getItemInHand().setAmount(amt-1);
+								v.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 600, 2));
+								v.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 600, 2));
+								v.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 1));
+							}else{
+								e.setCancelled(true);
+								d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "Use your Diamond Sword!");
+							}
 						}
 					}else{
 						e.setCancelled(true);
