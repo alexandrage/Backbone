@@ -52,7 +52,9 @@ public class ISCOREAPI
   }
 
   public void removeTeam(String team) {
-    this.board.getTeam(team).unregister();
+	  if(this.board.getTeam(team) != null){
+		  this.board.getTeam(team).unregister();
+	  }
   }
 
   public void addPlayerToTeam(String team, Player p) {

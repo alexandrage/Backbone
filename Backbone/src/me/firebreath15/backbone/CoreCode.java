@@ -1,5 +1,7 @@
 package me.firebreath15.backbone;
 
+import java.util.logging.Level;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
@@ -162,7 +164,6 @@ public class CoreCode {
 		
 	    ISCOREAPI api = new ISCOREAPI();
 	    api.setScoreboard(p);
-	    //api.obj.setDisplaySlot(null);    REMOVED BECAUSE CAUSED NULLPOINTERS
 	    api.removePlayerFromTeam("Player", p);
 		api.removeTeam("Player");
 		api.removeObjective("Arena_1");
@@ -177,11 +178,22 @@ public class CoreCode {
 	    
 	    PvpEngine.pal.remove(p.getName());
 	    
+	    if(Startgame.map.containsKey(p.getName())){
+	    	String a = Startgame.map.get(p.getName());
+	    	
+	    	if(plugin.getConfig().getInt("queue"+a) > 0){
+		    	  int q = plugin.getConfig().getInt("queue"+a);
+		    	  plugin.getConfig().set("queue"+a, q-1);
+		    	  plugin.saveConfig();
+		    }
+	    	
+	    }
+	    
 		if(plugin.getConfig().contains("spawn.x")){
 			Location spawn = new Location(Bukkit.getServer().getWorld(plugin.getConfig().getString("spawn.world")), plugin.getConfig().getDouble("spawn.x"), plugin.getConfig().getDouble("spawn.y"), plugin.getConfig().getDouble("spawn.z"));
 			p.teleport(spawn);
 		}else{
-			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"Error: Could not send you to game's end: Point has not been set!");
+			plugin.getLogger().log(Level.SEVERE, "Backbone was unable to teleport the player to the endpoint!");
 		}
 	}
 	

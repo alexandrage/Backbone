@@ -1,5 +1,5 @@
 name: Backbone
-version: 7.5.6
+version: 7.5.7
 author: Firebreath15
 main: me.firebreath15.backbone.main
 softdepend: [TagAPI]
