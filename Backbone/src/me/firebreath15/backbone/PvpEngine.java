@@ -19,6 +19,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
@@ -413,6 +414,27 @@ public class PvpEngine implements Listener{
 					e.getEntity().getWorld().createExplosion(e.getEntity().getLocation(), 0);
 					e.getEntity().remove();
 				}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void stopFoodConsumption(FoodLevelChangeEvent e){
+		if(e.getEntity() instanceof Player){
+			Player p = (Player)e.getEntity();
+			if(plugin.getConfig().contains("players1."+p.getName()) || plugin.getConfig().contains("players2."+p.getName()) || plugin.getConfig().contains("players3."+p.getName()) || plugin.getConfig().contains("players4."+p.getName()) || plugin.getConfig().contains("players5."+p.getName())){
+				e.setCancelled(true);
+				e.setFoodLevel(20);
+			}
+		}
+	}
+	
+	@EventHandler
+	public void stopLobbyDamage(EntityDamageEvent e){
+		if(e.getEntity() instanceof Player){
+			Player p = (Player)e.getEntity();
+			if(Startgame.map.containsKey(p.getName())){
+				e.setCancelled(true);
 			}
 		}
 	}

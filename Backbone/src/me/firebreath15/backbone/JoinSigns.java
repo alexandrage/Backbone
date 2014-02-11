@@ -72,37 +72,41 @@ public class JoinSigns implements Listener{
 					String l3 = s.getLine(2);
 					String a = l3.replaceAll("Arena: ", "");
 					if(!(plugin.getConfig().contains("players1."+p.getName()) || plugin.getConfig().contains("players2."+p.getName()) || plugin.getConfig().contains("players3."+p.getName()) || plugin.getConfig().contains("players4."+p.getName()) || plugin.getConfig().contains("players5."+p.getName()))){
-						if(!(plugin.getConfig().getInt("queue"+a)==-1)){
-							if(plugin.getConfig().contains("lobby.x")){
-								double x = plugin.getConfig().getDouble("lobby.x");
-					            double y = plugin.getConfig().getDouble("lobby.y");
-					            double z = plugin.getConfig().getDouble("lobby.z");
-					            String wn = plugin.getConfig().getString("lobby.world");
-					            World w = plugin.getServer().getWorld(wn);
-					            Location l = new Location(w, x, y, z);
-					            p.teleport(l);
-							
-								int que = plugin.getConfig().getInt("queue"+a);
-								plugin.getConfig().set("queue"+a, que+1);
-								plugin.saveConfig();
+						if(!(Startgame.map.containsKey(p.getName()))){
+							if(!(plugin.getConfig().getInt("queue"+a)==-1)){
+								if(plugin.getConfig().contains("lobby.x")){
+									double x = plugin.getConfig().getDouble("lobby.x");
+						            double y = plugin.getConfig().getDouble("lobby.y");
+						            double z = plugin.getConfig().getDouble("lobby.z");
+						            String wn = plugin.getConfig().getString("lobby.world");
+						            World w = plugin.getServer().getWorld(wn);
+						            Location l = new Location(w, x, y, z);
+						            p.teleport(l);
 								
-								ISCOREAPI api = new ISCOREAPI();
-								api.createObjective("Arena_"+a, "Backbone");
-								api.createTeam("Player");
-								api.setScore(Bukkit.getOfflinePlayer(ChatColor.RED+"Red"), 0);
-								api.setScore(Bukkit.getOfflinePlayer(ChatColor.BLUE+"Blue"), 0);
-								api.addPlayerToTeam("Player", p);
-								api.refreshPlayerScoreboard(p);
-								
-								Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+p.getName()+ChatColor.GOLD+" joined arena "+a+"!");
-								int q = plugin.getConfig().getInt("queue"+a);
-								@SuppressWarnings("unused")
-								BukkitTask pre = new Pregame(plugin, a, p, q).runTaskLater(plugin, 20);
+									int que = plugin.getConfig().getInt("queue"+a);
+									plugin.getConfig().set("queue"+a, que+1);
+									plugin.saveConfig();
+									
+									ISCOREAPI api = new ISCOREAPI();
+									api.createObjective("Arena_"+a, "Backbone");
+									api.createTeam("Player");
+									api.setScore(Bukkit.getOfflinePlayer(ChatColor.RED+"Red"), 0);
+									api.setScore(Bukkit.getOfflinePlayer(ChatColor.BLUE+"Blue"), 0);
+									api.addPlayerToTeam("Player", p);
+									api.refreshPlayerScoreboard(p);
+									
+									Bukkit.getServer().broadcastMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+p.getName()+ChatColor.GOLD+" joined arena "+a+"!");
+									int q = plugin.getConfig().getInt("queue"+a);
+									@SuppressWarnings("unused")
+									BukkitTask pre = new Pregame(plugin, a, p, q).runTaskLater(plugin, 20);
+								}else{
+									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game lobby has not been setup!");
+								}
 							}else{
-								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game lobby has not been setup!");
+								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is still running!");
 							}
 						}else{
-							p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"The game is still running!");
+							p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You are already queued to play!");
 						}
 					}else{
 						p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You are already in a game!");
