@@ -56,6 +56,11 @@ public class main extends JavaPlugin{
 		this.saveConfig();
 	}
 	
+	public void onDisable(){
+		Startgame.map.clear();
+		PvpEngine.pal.clear();
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(cmd.getName().equalsIgnoreCase("bb") || cmd.getName().equalsIgnoreCase("backbone")){
 			if(sender instanceof Player){

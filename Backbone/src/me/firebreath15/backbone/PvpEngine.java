@@ -428,14 +428,4 @@ public class PvpEngine implements Listener{
 			}
 		}
 	}
-	
-	@EventHandler
-	public void stopLobbyDamage(EntityDamageEvent e){
-		if(e.getEntity() instanceof Player){
-			Player p = (Player)e.getEntity();
-			if(Startgame.map.containsKey(p.getName())){
-				e.setCancelled(true);
-			}
-		}
-	}
 }
