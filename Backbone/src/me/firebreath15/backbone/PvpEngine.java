@@ -21,10 +21,12 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+@SuppressWarnings("deprecation") //.getShooter(); is depreciated, and I hate errors showing up lol
 public class PvpEngine implements Listener{
 	
 	main plugin;
@@ -327,8 +329,15 @@ public class PvpEngine implements Listener{
 							//player isn't using sword. is he using his nausea stick?
 							if(d.getItemInHand().getType()==Material.GOLD_HOE){
 								e.setCancelled(true);
+								
 								int amt = d.getItemInHand().getAmount();
-								d.getItemInHand().setAmount(amt-1);
+								if(amt==2){
+									d.getItemInHand().setAmount(1);
+								}else{
+									ItemStack hand = d.getItemInHand();
+									d.getInventory().remove(hand);
+								}
+								
 								v.addPotionEffect(new PotionEffect(PotionEffectType.CONFUSION, 600, 2));
 								v.addPotionEffect(new PotionEffect(PotionEffectType.BLINDNESS, 600, 2));
 								v.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 600, 1));
