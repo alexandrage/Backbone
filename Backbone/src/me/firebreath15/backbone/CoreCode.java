@@ -22,6 +22,16 @@ public class CoreCode {
 	}
 	
 	public void removeAndTeleport(Player p){
+		
+		if(plugin.getConfig().contains("spawn.x")){
+			if(plugin.getConfig().contains("players1."+p.getName()) || plugin.getConfig().contains("players2."+p.getName()) || plugin.getConfig().contains("players3."+p.getName()) || plugin.getConfig().contains("players4."+p.getName()) || plugin.getConfig().contains("players5."+p.getName()) || Startgame.map.containsKey(p.getName())){
+				Location spawn = new Location(Bukkit.getServer().getWorld(plugin.getConfig().getString("spawn.world")), plugin.getConfig().getDouble("spawn.x"), plugin.getConfig().getDouble("spawn.y"), plugin.getConfig().getDouble("spawn.z"));
+				p.teleport(spawn);
+			}
+		}else{
+			plugin.getLogger().log(Level.SEVERE, "Backbone was unable to teleport the player to the endpoint!");
+		}
+		
 		if (this.plugin.getConfig().contains("rplist1." + p.getName())){
 	      this.plugin.getConfig().set("rplist1." + p.getName(), null);
 	      this.plugin.getConfig().set("players1." + p.getName(), null);
@@ -180,6 +190,7 @@ public class CoreCode {
 	    
 	    if(Startgame.map.containsKey(p.getName())){
 	    	String a = Startgame.map.get(p.getName());
+	    	Startgame.map.remove(p.getName());
 	    	
 	    	if(plugin.getConfig().getInt("queue"+a) > 0){
 		    	  int q = plugin.getConfig().getInt("queue"+a);
@@ -188,13 +199,6 @@ public class CoreCode {
 		    }
 	    	
 	    }
-	    
-		if(plugin.getConfig().contains("spawn.x")){
-			Location spawn = new Location(Bukkit.getServer().getWorld(plugin.getConfig().getString("spawn.world")), plugin.getConfig().getDouble("spawn.x"), plugin.getConfig().getDouble("spawn.y"), plugin.getConfig().getDouble("spawn.z"));
-			p.teleport(spawn);
-		}else{
-			plugin.getLogger().log(Level.SEVERE, "Backbone was unable to teleport the player to the endpoint!");
-		}
 	}
 	
 	@SuppressWarnings({ "deprecation", "unused" })
