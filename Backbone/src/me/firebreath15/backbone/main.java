@@ -77,7 +77,6 @@ public class main extends JavaPlugin{
 							p.sendMessage(ChatColor.RED+"/bb bspawn <arena> "+ChatColor.YELLOW+"- set the Blue team's spawn");
 							p.sendMessage(ChatColor.RED+"/bb rspawn <arena> "+ChatColor.YELLOW+"- set the Red team's spawn");
 							p.sendMessage(ChatColor.RED+"/bb setreload <arena> "+ChatColor.YELLOW+"- set the reloader block");
-							p.sendMessage(ChatColor.RED+"/bb store "+ChatColor.YELLOW+"- buy upgrades using kill points");
 							p.sendMessage(ChatColor.RED+"/bb setend "+ChatColor.YELLOW+"- set the exit");
 							p.sendMessage(ChatColor.RED+"/bb setlobby "+ChatColor.YELLOW+"- set the pre-game waitingroom");
 							p.sendMessage(ChatColor.RED+"/bb leave "+ChatColor.YELLOW+"- leave the game");
@@ -131,17 +130,6 @@ public class main extends JavaPlugin{
 									}
 								}else{
 									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You aren't playing!");
-								}
-							}else{
-								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have permission!");
-							}
-						}
-		/*Store*/		if(args[0].equalsIgnoreCase("store")){
-							if(p.hasPermission("backbone.store")){
-								if(this.getConfig().contains("players1."+p.getName()) || this.getConfig().contains("players2."+p.getName()) || this.getConfig().contains("players3."+p.getName()) || this.getConfig().contains("players4."+p.getName()) || this.getConfig().contains("players5."+p.getName())){
-									p.openInventory(Store.store);
-								}else{
-									p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You have to be playing in order to shop!");
 								}
 							}else{
 								p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have permission!");

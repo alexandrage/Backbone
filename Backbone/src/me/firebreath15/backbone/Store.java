@@ -1,7 +1,7 @@
 package me.firebreath15.backbone;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,7 +10,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -303,5 +305,17 @@ public class Store implements Listener{
 		    	p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.YELLOW+"You have "+points+" points!");
 	    	}
 	    }
+    }
+    
+    @EventHandler
+    public void onPlayerSummonStore(PlayerInteractEvent e){
+    	if(e.getAction()==Action.RIGHT_CLICK_AIR || e.getAction()==Action.RIGHT_CLICK_BLOCK){
+	    	if(e.getPlayer().getItemInHand().getType()==Material.BOOK){
+	    		Player p = e.getPlayer();
+	    		if(plugin.getConfig().contains("players1."+p.getName()) || plugin.getConfig().contains("players2."+p.getName()) || plugin.getConfig().contains("players3."+p.getName()) || plugin.getConfig().contains("players4."+p.getName()) || plugin.getConfig().contains("players5."+p.getName())){
+	    			p.openInventory(store);
+	    		}
+	    	}
+    	}
     }
 }

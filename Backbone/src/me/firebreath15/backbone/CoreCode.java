@@ -233,19 +233,19 @@ public class CoreCode {
 	              
 	              ItemStack brod = new ItemStack(Material.BLAZE_ROD, 1);
 	              ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
-	              ItemStack team = new ItemStack(Material.NETHERRACK);
+	              ItemStack store = new ItemStack(Material.BOOK);
 	              ItemMeta bim = brod.getItemMeta();
 	              ItemMeta sim = sword.getItemMeta();
-	              ItemMeta tim = team.getItemMeta();
+	              ItemMeta stim = store.getItemMeta();
 	              bim.setDisplayName(ChatColor.GOLD + "Snowball Gun");
 	              sim.setDisplayName(ChatColor.BLUE + "Close-Range Combat Sword");
-	              tim.setDisplayName(ChatColor.RED + "You are on the Red team");
+	              stim.setDisplayName(ChatColor.GREEN + "Open Store");
 	              brod.setItemMeta(bim);
 	              sword.setItemMeta(sim);
-	              team.setItemMeta(tim);
+	              store.setItemMeta(stim);
 	              p.getInventory().addItem(brod);
 	              p.getInventory().addItem(sword);
-	              p.getInventory().addItem(team);
+	              p.getInventory().addItem(store);
 	              p.updateInventory();
 	              
 	              ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
@@ -298,19 +298,19 @@ public class CoreCode {
 	              
 	              ItemStack brod = new ItemStack(Material.BLAZE_ROD, 1);
 	              ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
-	              ItemStack team = new ItemStack(Material.LAPIS_BLOCK);
+	              ItemStack store = new ItemStack(Material.BOOK);
 	              ItemMeta bim = brod.getItemMeta();
 	              ItemMeta sim = sword.getItemMeta();
-	              ItemMeta tim = team.getItemMeta();
+	              ItemMeta stim = store.getItemMeta();
 	              bim.setDisplayName(ChatColor.GOLD + "Snowball Gun");
 	              sim.setDisplayName(ChatColor.BLUE + "Close-Range Combat Sword");
-	              tim.setDisplayName(ChatColor.BLUE + "You are on the Blue team");
+	              stim.setDisplayName(ChatColor.GREEN + "Open Store");
 	              brod.setItemMeta(bim);
 	              sword.setItemMeta(sim);
-	              team.setItemMeta(tim);
+	              store.setItemMeta(stim);
 	              p.getInventory().addItem(brod);
 	              p.getInventory().addItem(sword);
-	              p.getInventory().addItem(team);
+	              p.getInventory().addItem(store);
 	              p.updateInventory();
 	              
 	              ItemStack helm = new ItemStack(Material.LEATHER_HELMET);
