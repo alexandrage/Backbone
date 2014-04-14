@@ -123,7 +123,7 @@ public class Store implements Listener{
 	    Inventory inventory = event.getInventory();
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.EXP_BOTTLE){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 100){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
@@ -131,7 +131,7 @@ public class Store implements Listener{
 			    	p.setLevel(40);
 			    	p.setHealth(20d);
 			    	p.setFoodLevel(20);
-			    	plugin.getConfig().set(p.getName(), points-100);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-100);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -142,13 +142,13 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == jump.getType()){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 300){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	PotionEffect effect = new PotionEffect(PotionEffectType.JUMP, 1200, 2);
 					p.addPotionEffect(effect);
-					plugin.getConfig().set(p.getName(), points-300);
+					plugin.getConfig().set(p.getUniqueId().toString(), points-300);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -159,13 +159,13 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == speed.getType()){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 300){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	PotionEffect effect = new PotionEffect(PotionEffectType.SPEED, 1200, 2);
 					p.addPotionEffect(effect);
-					plugin.getConfig().set(p.getName(), points-300);
+					plugin.getConfig().set(p.getUniqueId().toString(), points-300);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -176,12 +176,12 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.ENDER_PEARL){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 500){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	p.getInventory().addItem(enderpearls);
-			    	plugin.getConfig().set(p.getName(), points-500);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-500);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -192,12 +192,12 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.SNOW_BALL){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 650){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	p.setLevel(100);
-			    	plugin.getConfig().set(p.getName(), points-650);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-650);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -208,7 +208,7 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.LEATHER_CHESTPLATE){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 1000){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
@@ -255,7 +255,7 @@ public class Store implements Listener{
 						boot.setItemMeta(metattt);
 						p.getInventory().setBoots(boot);
 			    	}
-			    	plugin.getConfig().set(p.getName(), points-1000);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-1000);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -266,13 +266,13 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.BOW){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 1100){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	p.getInventory().addItem(new ItemStack(Material.BOW));
 			    	p.getInventory().addItem(new ItemStack(Material.ARROW,15));
-			    	plugin.getConfig().set(p.getName(), points-1100);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-1100);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -283,12 +283,12 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.GOLD_HOE){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		if(points >= 1500){
 			    	event.setCancelled(true);
 			    	p.closeInventory();
 			    	p.getInventory().addItem(new ItemStack(Material.GOLD_HOE,2));
-			    	plugin.getConfig().set(p.getName(), points-1500);
+			    	plugin.getConfig().set(p.getUniqueId().toString(), points-1500);
 			    	plugin.saveConfig(); p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.GREEN+"Purchase Successful!");
 	    		}else{
 	    			p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.RED+"You don't have enough points!");
@@ -299,7 +299,7 @@ public class Store implements Listener{
 	    }
 	    if (inventory.getName().equals(store.getName())) {
 	    	if(clicked.getType() == Material.BEACON){
-	    		int points = plugin.getConfig().getInt(p.getName());
+	    		int points = plugin.getConfig().getInt(p.getUniqueId().toString());
 	    		event.setCancelled(true);
 		    	p.closeInventory();
 		    	p.sendMessage(ChatColor.DARK_PURPLE+"[Backbone] "+ChatColor.YELLOW+"You have "+points+" points!");

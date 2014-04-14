@@ -62,6 +62,7 @@ public class JoinSigns implements Listener{
 		}
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onSignClick(PlayerInteractEvent e){
 		Player p = e.getPlayer();

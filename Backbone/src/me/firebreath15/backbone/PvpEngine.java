@@ -67,8 +67,8 @@ public class PvpEngine implements Listener{
 				                v.setHealth(20d);
 				                v.setFoodLevel(20);
 				                
-				                int pts = plugin.getConfig().getInt(d.getName());
-				                plugin.getConfig().set(d.getName(), pts+100);
+				                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+				                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 				                plugin.saveConfig();
 				                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 				                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
@@ -105,8 +105,8 @@ public class PvpEngine implements Listener{
 				                v.setHealth(20d);
 				                v.setFoodLevel(20);
 				                
-				                int pts = plugin.getConfig().getInt(d.getName());
-				                plugin.getConfig().set(d.getName(), pts+100);
+				                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+				                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 				                plugin.saveConfig();
 				                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 				                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
@@ -166,8 +166,8 @@ public class PvpEngine implements Listener{
 					                v.setHealth(20d);
 					                v.setFoodLevel(20);
 					                
-					                int pts = plugin.getConfig().getInt(d.getName());
-					                plugin.getConfig().set(d.getName(), pts+100);
+					                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+					                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 					                plugin.saveConfig();
 					                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 					                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
@@ -204,8 +204,8 @@ public class PvpEngine implements Listener{
 					                v.setHealth(20d);
 					                v.setFoodLevel(20);
 					                
-					                int pts = plugin.getConfig().getInt(d.getName());
-					                plugin.getConfig().set(d.getName(), pts+100);
+					                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+					                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 					                plugin.saveConfig();
 					                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 					                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
@@ -265,8 +265,8 @@ public class PvpEngine implements Listener{
 					                v.setHealth(20d);
 					                v.setFoodLevel(20);
 					                
-					                int pts = plugin.getConfig().getInt(d.getName());
-					                plugin.getConfig().set(d.getName(), pts+100);
+					                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+					                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 					                plugin.saveConfig();
 					                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 					                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
@@ -303,8 +303,8 @@ public class PvpEngine implements Listener{
 					                v.setHealth(20d);
 					                v.setFoodLevel(20);
 					                
-					                int pts = plugin.getConfig().getInt(d.getName());
-					                plugin.getConfig().set(d.getName(), pts+100);
+					                int pts = plugin.getConfig().getInt(d.getUniqueId().toString());
+					                plugin.getConfig().set(d.getUniqueId().toString(), pts+100);
 					                plugin.saveConfig();
 					                d.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You killed " + ChatColor.RED + v.getName() + ChatColor.GOLD + "! " + ChatColor.DARK_PURPLE + "+100");
 					                v.sendMessage(ChatColor.DARK_PURPLE + "[Backbone] " + ChatColor.GOLD + "You were killed by " + ChatColor.RED + d.getName());
