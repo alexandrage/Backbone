@@ -35,6 +35,7 @@ public class GameOver extends BukkitRunnable{
 			plugin.getConfig().set("queue"+a, 0); //reset the lobby queue - the game is over!
 			plugin.saveConfig();
 			
+			@SuppressWarnings("deprecation")
 			Player[] players = Bukkit.getServer().getOnlinePlayers();
 			for(int i=0; i<players.length; i++){
 				Player p = players[i];

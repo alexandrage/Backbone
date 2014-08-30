@@ -22,6 +22,7 @@ public class Startgame extends BukkitRunnable{
 	
 	public void run(){
 		//the countdown has ended
+		@SuppressWarnings("deprecation")
 		Player[] ops = Bukkit.getServer().getOnlinePlayers();
 		String a="";
 		
